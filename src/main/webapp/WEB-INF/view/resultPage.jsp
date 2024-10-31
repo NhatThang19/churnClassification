@@ -46,7 +46,7 @@
                         <h4 class="mb-5 text-center">Biểu đồ khả năng khách hàng rời đi</h4>
                         <canvas id="myChart" style="width:100%;max-width:100%"></canvas>
                         <h5 class="mt-3 mb-4 text-center">Dự đoán khách hàng rời đi là: <span
-                                style="text-decoration: underline;">${result.predictedClass}%</span>!!!</h5>
+                                style="text-decoration: underline;">${result.predictedClass}</span>!!!</h5>
                         <div class="d-flex justify-content-center flex-column">
                             <a href="/" type="button" class="btn btn-success mb-3">Trở lại</a>
                             <img style="height: 350px;" src="resources/gif.gif" alt="">
@@ -65,99 +65,98 @@
                             <tbody>
                                 <tr>
                                     <td>1</td>
-                                    <td>Gender</td>
+                                    <td>gender</td>
                                     <td>${customer.gender}</td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
-                                    <td>SeniorCitizen</td>
-                                    <td>
-                                        ${customer.seniorCitizen == 1 ? 'Yes' : 'No'}
+                                    <td>seniorCitizen</td>
+                                    <td>${customer.seniorCitizen}</td>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
-                                    <td>Partner</td>
+                                    <td>partner</td>
                                     <td>${customer.partner}</td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
-                                    <td>Dependents</td>
+                                    <td>dependents</td>
                                     <td>${customer.dependents}</td>
                                 </tr>
                                 <tr>
                                     <td>5</td>
-                                    <td>Dependents</td>
-                                    <td>${customer.dependents}</td>
+                                    <td>tenureMonths</td>
+                                    <td>${customer.tenureMonths}</td>
                                 </tr>
                                 <tr>
                                     <td>6</td>
-                                    <td>Tenure</td>
-                                    <td>${customer.tenure}</td>
+                                    <td>contract</td>
+                                    <td>${customer.contract}</td>
                                 </tr>
                                 <tr>
                                     <td>7</td>
-                                    <td>PhoneService</td>
+                                    <td>phoneService</td>
                                     <td>${customer.phoneService}</td>
                                 </tr>
                                 <tr>
                                     <td>8</td>
-                                    <td>MultipleLines</td>
+                                    <td>multipleLines</td>
                                     <td>${customer.multipleLines}</td>
                                 </tr>
                                 <tr>
                                     <td>9</td>
-                                    <td>InternetService</td>
+                                    <td>internetService</td>
                                     <td>${customer.internetService}</td>
                                 </tr>
                                 <tr>
                                     <td>10</td>
-                                    <td>OnlineSecurity</td>
+                                    <td>onlineSecurity</td>
                                     <td>${customer.onlineSecurity}</td>
                                 </tr>
                                 <tr>
                                     <td>11</td>
-                                    <td>OnlineBackup</td>
+                                    <td>onlineBackup</td>
                                     <td>${customer.onlineBackup}</td>
                                 </tr>
                                 <tr>
                                     <td>12</td>
-                                    <td>DeviceProtection</td>
+                                    <td>deviceProtection</td>
                                     <td>${customer.deviceProtection}</td>
                                 </tr>
                                 <tr>
                                     <td>13</td>
-                                    <td>TechSupport</td>
+                                    <td>techSupport</td>
                                     <td>${customer.techSupport}</td>
                                 </tr>
                                 <tr>
                                     <td>14</td>
-                                    <td>StreamingTV</td>
+                                    <td>streamingTV</td>
                                     <td>${customer.streamingTV}</td>
                                 </tr>
                                 <tr>
                                     <td>15</td>
-                                    <td>StreamingMovies</td>
+                                    <td>streamingMovies</td>
                                     <td>${customer.streamingMovies}</td>
                                 </tr>
                                 <tr>
                                     <td>16</td>
-                                    <td>PaperlessBilling</td>
+                                    <td>paperlessBilling</td>
                                     <td>${customer.paperlessBilling}</td>
                                 </tr>
                                 <tr>
                                     <td>17</td>
-                                    <td>PaymentMethod</td>
+                                    <td>paymentMethod</td>
                                     <td>${customer.paymentMethod}</td>
                                 </tr>
                                 <tr>
                                     <td>18</td>
-                                    <td>MonthlyCharges</td>
+                                    <td>monthlyCharges</td>
                                     <td>${customer.monthlyCharges}</td>
                                 </tr>
                                 <tr>
                                     <td>19</td>
-                                    <td>TotalCharges</td>
+                                    <td>totalCharges</td>
                                     <td>${customer.totalCharges}</td>
                                 </tr>
                             </tbody>

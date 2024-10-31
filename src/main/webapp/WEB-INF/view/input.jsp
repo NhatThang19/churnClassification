@@ -37,25 +37,25 @@
                             <c:set var="errorGender">
                                 <form:errors path="gender" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="Gender" class="form-label">Giới tính của khách hàng là?</label>
+                            <label for="Gender" class="form-label">gender</label>
                             <form:select class="form-select ${not empty errorGender? 'is-invalid':''}" id="Gender"
                                 path="gender">
                                 <option value="" disabled selected>Mở lên để chọn</option>
-                                <form:option value="Male">Nam</form:option>
-                                <form:option value="Female">Nữ</form:option>
+                                <form:option value="Male">Male</form:option>
+                                <form:option value="Female">Female</form:option>
                             </form:select>
                             ${errorGender}
                         </div>
                         <div class="col-6">
                             <c:set var="errorSeniorCitizen">
-                                <form:errors path="SeniorCitizen" cssClass="invalid-feedback" />
+                                <form:errors path="seniorCitizen" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="SeniorCitizen" class="form-label">khách hàng là người lớn tuổi?</label>
+                            <label for="SeniorCitizen" class="form-label">seniorCitizen</label>
                             <form:select class="form-select ${not empty errorSeniorCitizen? 'is-invalid':''}"
-                                id="SeniorCitizen" path="SeniorCitizen">
+                                id="SeniorCitizen" path="seniorCitizen">
                                 <option value="" disabled selected>Mở lên để chọn</option>
-                                <form:option value="1">Đúng</form:option>
-                                <form:option value="0">Sai</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorSeniorCitizen}
                         </div>
@@ -63,28 +63,27 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorPartner">
-                                <form:errors path="Partner" cssClass="invalid-feedback" />
+                                <form:errors path="partner" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="Partner" class="form-label">khách hàng đã kết hôn?</label>
+                            <label for="Partner" class="form-label">partner</label>
                             <form:select class="form-select ${not empty errorPartner? 'is-invalid':''}" id="Partner"
-                                path="Partner">
+                                path="partner">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorPartner}
                         </div>
                         <div class="col-6">
                             <c:set var="errorDependents">
-                                <form:errors path="Dependents" cssClass="invalid-feedback" />
+                                <form:errors path="dependents" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="Dependents" class="form-label">khách hàng có sống phụ thuộc vào ai
-                                không?</label>
+                            <label for="Dependents" class="form-label">dependents</label>
                             <form:select class="form-select  ${not empty errorDependents? 'is-invalid':''}"
-                                id="Dependents" path="Dependents">
+                                id="Dependents" path="dependents">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorDependents}
                         </div>
@@ -92,24 +91,23 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errortenure">
-                                <form:errors path="tenure" cssClass="invalid-feedback" />
+                                <form:errors path="tenureMonths" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="tenure" class="form-label">Số tháng khách hàng đã gắn bó với công ty</label>
+                            <label for="tenure" class="form-label">tenureMonths</label>
                             <form:input type="number" class="form-control ${not empty errortenure? 'is-invalid':''}"
-                                id="tenure" path="tenure" />
+                                id="tenure" path="tenureMonths" />
                             ${errortenure}
                         </div>
                         <div class="col-6">
                             <c:set var="errorPhoneService">
-                                <form:errors path="PhoneService" cssClass="invalid-feedback" />
+                                <form:errors path="phoneService" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="PhoneService" class="form-label">khách hàng có sử dụng dịch vụ điện thoại hay
-                                không?</label>
+                            <label for="PhoneService" class="form-label">phoneService</label>
                             <form:select class="form-select ${not empty errorPhoneService? 'is-invalid':''}"
-                                id="PhoneService" path="PhoneService">
+                                id="PhoneService" path="phoneService">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorPhoneService}
                         </div>
@@ -117,31 +115,30 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorMultipleLines">
-                                <form:errors path="MultipleLines" cssClass="invalid-feedback" />
+                                <form:errors path="multipleLines" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="MultipleLines" class="form-label">khách hàng có sử dụng nhiều đường dây hay
-                                không?</label>
+                            <label for="MultipleLines" class="form-label">multipleLines</label>
                             <form:select class="form-select ${not empty errorMultipleLines? 'is-invalid':''}"
-                                id="MultipleLines" path="MultipleLines">
+                                id="MultipleLines" path="multipleLines">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No phone service">Không sử dụng dịch vụ điện thoại</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No phone service">No phone service</form:option>
                             </form:select>
                             ${errorMultipleLines}
                         </div>
                         <div class="col-6">
                             <c:set var="errorInternetService">
-                                <form:errors path="InternetService" cssClass="invalid-feedback" />
+                                <form:errors path="internetService" cssClass="invalid-feedback" />
                             </c:set>
                             <label for="InternetService" class="form-label">
-                                Thiết bị cung cấp dịch vụ internet của của khách hàng là?</label>
+                                internetService</label>
                             <form:select class="form-select ${not empty errorInternetService? 'is-invalid':''}"
-                                id="InternetService" path="InternetService">
+                                id="InternetService" path="internetService">
                                 <option selected disabled>Mở lên để chọn</option>
                                 <form:option value="Fiber optic">Fiber optic</form:option>
                                 <form:option value="DSL">DSL</form:option>
-                                <form:option value="No">Khác</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorInternetService}
                         </div>
@@ -149,31 +146,29 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorOnlineSecurity">
-                                <form:errors path="OnlineSecurity" cssClass="invalid-feedback" />
+                                <form:errors path="onlineSecurity" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="OnlineSecurity" class="form-label">khách hàng có sử dụng dịch bảo mật online
-                                ?</label>
+                            <label for="OnlineSecurity" class="form-label">onlineSecurity</label>
                             <form:select class="form-select ${not empty errorOnlineSecurity? 'is-invalid':''}"
-                                id="OnlineSecurity" path="OnlineSecurity">
+                                id="OnlineSecurity" path="onlineSecurity">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorOnlineSecurity}
                         </div>
                         <div class="col-6">
                             <c:set var="errorOnlineBackup">
-                                <form:errors path="OnlineBackup" cssClass="invalid-feedback" />
+                                <form:errors path="onlineBackup" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="OnlineBackup" class="form-label">khách hàng có sử dụng dịch online
-                                backup?</label>
+                            <label for="onlineBackup" class="form-label">onlineBackup</label>
                             <form:select class="form-select ${not empty errorOnlineBackup? 'is-invalid':''}"
-                                id="OnlineBackup" path="OnlineBackup">
+                                id="OnlineBackup" path="onlineBackup">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorOnlineBackup}
                         </div>
@@ -181,27 +176,25 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorDeviceProtection">
-                                <form:errors path="DeviceProtection" cssClass="invalid-feedback" />
+                                <form:errors path="deviceProtection" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="DeviceProtection" class="form-label">khách hàng có sử dụng dịch vụ bảo mật thiết
-                                bị?</label>
+                            <label for="DeviceProtection" class="form-label">deviceProtection</label>
                             <form:select class="form-select ${not empty errorDeviceProtection? 'is-invalid':''}"
-                                id="DeviceProtection" path="DeviceProtection">
+                                id="DeviceProtection" path="deviceProtection">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorDeviceProtection}
                         </div>
                         <div class="col-6">
                             <c:set var="errorPaymentMethod">
-                                <form:errors path="PaymentMethod" cssClass="invalid-feedback" />
+                                <form:errors path="paymentMethod" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="PaymentMethod" class="form-label">Phương thức thanh toán của khách hàng
-                                là?</label>
+                            <label for="PaymentMethod" class="form-label">paymentMethod</label>
                             <form:select class="form-select ${not empty errorPaymentMethod? 'is-invalid':''}"
-                                id="PaymentMethod" path="PaymentMethod">
+                                id="PaymentMethod" path="paymentMethod">
                                 <option selected disabled>Mở lên để chọn</option>
                                 <form:option value="Electronic check">Electronic check</form:option>
                                 <form:option value="Mailed check">Mailed check</form:option>
@@ -214,31 +207,29 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorTechSupport">
-                                <form:errors path="TechSupport" cssClass="invalid-feedback" />
+                                <form:errors path="techSupport" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="TechSupport" class="form-label">khách hàng có sử dụng dịch vụ hỗ trợ kĩ
-                                thuật?</label>
+                            <label for="TechSupport" class="form-label">techSupport</label>
                             <form:select class="form-select ${not empty errorTechSupport? 'is-invalid':''}"
-                                id="TechSupport" path="TechSupport">
+                                id="TechSupport" path="techSupport">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorTechSupport}
                         </div>
                         <div class="col-6">
                             <c:set var="errorStreamingTV">
-                                <form:errors path="StreamingTV" cssClass="invalid-feedback" />
+                                <form:errors path="streamingTV" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="StreamingTV" class="form-label">khách hàng có sử dụng dịch vụ Streaming
-                                TV?</label>
+                            <label for="StreamingTV" class="form-label">streamingTV</label>
                             <form:select class="form-select ${not empty errorStreamingTV? 'is-invalid':''}"
-                                id="StreamingTV" path="StreamingTV">
+                                id="StreamingTV" path="streamingTV">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorStreamingTV}
                         </div>
@@ -246,31 +237,29 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorStreamingMovies">
-                                <form:errors path="StreamingMovies" cssClass="invalid-feedback" />
+                                <form:errors path="streamingMovies" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="StreamingMovies" class="form-label">khách hàng có sử dụng dịch vụ Streaming
-                                Movies?</label>
+                            <label for="StreamingMovies" class="form-label">streamingMovies</label>
                             <form:select class="form-select ${not empty errorStreamingMovies? 'is-invalid':''}"
-                                id="StreamingMovies" path="StreamingMovies">
+                                id="StreamingMovies" path="streamingMovies">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Đúng</form:option>
-                                <form:option value="No">Sai</form:option>
-                                <form:option value="No internet service">Không sử dụng dịch vụ mạng</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
+                                <form:option value="No internet service">No internet service</form:option>
                             </form:select>
                             ${errorStreamingMovies}
                         </div>
                         <div class="col-6">
                             <c:set var="errorContract">
-                                <form:errors path="Contract" cssClass="invalid-feedback" />
+                                <form:errors path="contract" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="Contract" class="form-label">Loại thời hạn hợp đồng khách hàng sử dụng
-                                là?</label>
+                            <label for="Contract" class="form-label">contract</label>
                             <form:select class="form-select ${not empty errorContract? 'is-invalid':''}" id="Contract"
-                                path="Contract">
+                                path="contract">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Month-to-month">Từng tháng một</form:option>
-                                <form:option value="One year">1 năm</form:option>
-                                <form:option value="Two year">2 năm</form:option>
+                                <form:option value="Month-to-month">Month-to-month</form:option>
+                                <form:option value="One year">One year</form:option>
+                                <form:option value="Two year">Two year</form:option>
                             </form:select>
                             ${errorContract}
                         </div>
@@ -278,39 +267,37 @@
                     <div class="row mb-4">
                         <div class="col-6">
                             <c:set var="errorPaperlessBilling">
-                                <form:errors path="PaperlessBilling" cssClass="invalid-feedback" />
+                                <form:errors path="paperlessBilling" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="PaperlessBilling" class="form-label">Khi thanh toán khách hàng có cần bill
-                                không?</label>
+                            <label for="PaperlessBilling" class="form-label">paperlessBilling</label>
                             <form:select class="form-select ${not empty errorPaperlessBilling? 'is-invalid':''}"
-                                id="PaperlessBilling" path="PaperlessBilling">
+                                id="PaperlessBilling" path="paperlessBilling">
                                 <option selected disabled>Mở lên để chọn</option>
-                                <form:option value="Yes">Có</form:option>
-                                <form:option value="No">Không</form:option>
+                                <form:option value="Yes">Yes</form:option>
+                                <form:option value="No">No</form:option>
                             </form:select>
                             ${errorPaperlessBilling}
                         </div>
                         <div class="col-6">
                             <c:set var="errorMonthlyCharges">
-                                <form:errors path="MonthlyCharges" cssClass="invalid-feedback" />
+                                <form:errors path="monthlyCharges" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="MonthlyCharges" class="form-label">Số tiền khách hàng thường phải trả hàng
-                                tháng?</label>
+                            <label for="MonthlyCharges" class="form-label">monthlyCharges</label>
                             <form:input type="number"
                                 class="form-control ${not empty errorMonthlyCharges? 'is-invalid':''}"
-                                id="MonthlyCharges" path="MonthlyCharges" />
+                                id="MonthlyCharges" path="monthlyCharges" />
                             ${errorMonthlyCharges}
                         </div>
                     </div>
                     <div class="row mb-4">
                         <div class="col-12">
                             <c:set var="errorTotalCharges">
-                                <form:errors path="TotalCharges" cssClass="invalid-feedback" />
+                                <form:errors path="totalCharges" cssClass="invalid-feedback" />
                             </c:set>
-                            <label for="TotalCharges" class="form-label">Tổng số tiền mà khách hàng phải trả?</label>
+                            <label for="TotalCharges" class="form-label">totalCharges</label>
                             <form:input type="number"
                                 class="form-control ${not empty errorTotalCharges? 'is-invalid':''}" id="TotalCharges"
-                                path="TotalCharges" />
+                                path="totalCharges" />
                             ${errorTotalCharges}
                         </div>
                     </div>

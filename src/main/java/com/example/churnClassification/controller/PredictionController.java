@@ -15,7 +15,6 @@ import com.example.churnClassification.domain.Customer;
 
 import jakarta.validation.Valid;
 import weka.classifiers.Classifier;
-import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
@@ -31,7 +30,6 @@ public class PredictionController {
     @GetMapping("/")
     public String getValues(Model model) throws URISyntaxException {
         Customer customer = new Customer();
-        customer.setSeniorCitizen(-1);
         model.addAttribute("customer", customer);
         return "input";
     }
@@ -50,34 +48,34 @@ public class PredictionController {
             return "input";
         }
 
+        // Khai báo biến file đầu vào
         InputStream modelStream = null;
-        InputStream arffStream = null; // Khai báo biến cho arffStream
+        InputStream arffStream = null;
         try {
             // Load mô hình
-            modelStream = getClass().getClassLoader().getResourceAsStream("churnModel.model");
+            modelStream = getClass().getClassLoader().getResourceAsStream("smote.model");
             if (modelStream == null) {
-                throw new FileNotFoundException("Không tìm thấy file mô hình: churnModel.model");
+                throw new FileNotFoundException("Không tìm thấy file mô hình!!!");
             }
             Classifier classifier = (Classifier) weka.core.SerializationHelper.read(modelStream);
 
             // Tạo Instances từ file ARFF
-            arffStream = getClass().getClassLoader().getResourceAsStream("trainning-1.arff");
+            arffStream = getClass().getClassLoader().getResourceAsStream("Churn-preprocess.arff");
             if (arffStream == null) {
-                throw new FileNotFoundException("Không tìm thấy file ARFF: trainning-1.arff");
+                throw new FileNotFoundException("Không tìm thấy file ARFF!!!");
             }
             Instances dataset = new ConverterUtils.DataSource(arffStream).getDataSet();
-            dataset.setClassIndex(dataset.numAttributes() - 1); // Đặt chỉ mục lớp
+            // Đặt chỉ mục lớp
+            dataset.setClassIndex(dataset.numAttributes() - 1);
 
             // Phân loại
             PredictionResult result = classifyCustomer(customer, classifier, dataset);
 
             model.addAttribute("result", result);
             model.addAttribute("customer", customer);
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Đóng stream
             if (modelStream != null) {
                 try {
                     modelStream.close();
@@ -87,7 +85,7 @@ public class PredictionController {
             }
             if (arffStream != null) {
                 try {
-                    arffStream.close(); // Đóng arffStream
+                    arffStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -100,28 +98,29 @@ public class PredictionController {
             throws Exception {
         // Tạo một Instance mới với số lượng thuộc tính giống như trong dataset
         Instance instance = new DenseInstance(dataset.numAttributes());
-        instance.setDataset(dataset); // Đặt dataset cho instance
+        // Đặt dataset cho instance
+        instance.setDataset(dataset);
 
-        // Gán giá trị cho các thuộc tính với kiểm tra
-        setValueWithCheck(instance, dataset, "gender", customer.getGender());
-        setValueWithCheck(instance, dataset, "SeniorCitizen", customer.getSeniorCitizen()); // Cập nhật dòng này
-        setValueWithCheck(instance, dataset, "Partner", customer.getPartner());
-        setValueWithCheck(instance, dataset, "Dependents", customer.getDependents());
-        setValueWithCheck(instance, dataset, "tenure", customer.getTenure()); // Cập nhật giá trị đúng
-        setValueWithCheck(instance, dataset, "PhoneService", customer.getPhoneService());
-        setValueWithCheck(instance, dataset, "MultipleLines", customer.getMultipleLines());
-        setValueWithCheck(instance, dataset, "InternetService", customer.getInternetService());
-        setValueWithCheck(instance, dataset, "OnlineSecurity", customer.getOnlineSecurity());
-        setValueWithCheck(instance, dataset, "OnlineBackup", customer.getOnlineBackup());
-        setValueWithCheck(instance, dataset, "DeviceProtection", customer.getDeviceProtection());
-        setValueWithCheck(instance, dataset, "TechSupport", customer.getTechSupport());
-        setValueWithCheck(instance, dataset, "StreamingTV", customer.getStreamingTV());
-        setValueWithCheck(instance, dataset, "Contract", customer.getContract());
-        setValueWithCheck(instance, dataset, "StreamingMovies", customer.getStreamingMovies());
-        setValueWithCheck(instance, dataset, "PaperlessBilling", customer.getPaperlessBilling());
-        setValueWithCheck(instance, dataset, "PaymentMethod", customer.getPaymentMethod());
-        instance.setValue(dataset.attribute("MonthlyCharges"), customer.getMonthlyCharges());
-        instance.setValue(dataset.attribute("TotalCharges"), customer.getTotalCharges());
+        // Gán giá trị thuộc tính
+        instance.setValue(dataset.attribute("gender"), customer.getGender());
+        instance.setValue(dataset.attribute("seniorCitizen"), customer.getSeniorCitizen());
+        instance.setValue(dataset.attribute("partner"), customer.getPartner());
+        instance.setValue(dataset.attribute("dependents"), customer.getDependents());
+        instance.setValue(dataset.attribute("tenureMonths"), customer.getTenureMonths());
+        instance.setValue(dataset.attribute("phoneService"), customer.getPhoneService());
+        instance.setValue(dataset.attribute("multipleLines"), customer.getMultipleLines());
+        instance.setValue(dataset.attribute("internetService"), customer.getInternetService());
+        instance.setValue(dataset.attribute("onlineSecurity"), customer.getOnlineSecurity());
+        instance.setValue(dataset.attribute("onlineBackup"), customer.getOnlineBackup());
+        instance.setValue(dataset.attribute("deviceProtection"), customer.getDeviceProtection());
+        instance.setValue(dataset.attribute("techSupport"), customer.getTechSupport());
+        instance.setValue(dataset.attribute("streamingTV"), customer.getStreamingTV());
+        instance.setValue(dataset.attribute("contract"), customer.getContract());
+        instance.setValue(dataset.attribute("streamingMovies"), customer.getStreamingMovies());
+        instance.setValue(dataset.attribute("paperlessBilling"), customer.getPaperlessBilling());
+        instance.setValue(dataset.attribute("paymentMethod"), customer.getPaymentMethod());
+        instance.setValue(dataset.attribute("monthlyCharges"), customer.getMonthlyCharges());
+        instance.setValue(dataset.attribute("totalCharges"), customer.getTotalCharges());
 
         // Phân loại
         double classIndex = classifier.classifyInstance(instance);
@@ -129,42 +128,15 @@ public class PredictionController {
         // Lấy tên của lớp dự đoán
         String predictedClass = dataset.classAttribute().value((int) classIndex);
 
+        // Lấy tỷ lệ % yes và no
         double[] distribution = classifier.distributionForInstance(instance);
         double yesPercentage = distribution[dataset.classAttribute().indexOfValue("Yes")] * 100;
         double noPercentage = distribution[dataset.classAttribute().indexOfValue("No")] * 100;
 
-        // Thêm tỷ lệ phần trăm vào kết quả trả về
-        String result = String.format("Dự đoán loại: %s (Yes: %.2f%%, No: %.2f%%)",
-                dataset.classAttribute().value((int) classifier.classifyInstance(instance)),
-                yesPercentage, noPercentage);
-
         return new PredictionResult(predictedClass, yesPercentage, noPercentage);
     }
 
-    private void setValueWithCheck(Instance instance, Instances dataset, String attributeName, Object value)
-            throws Exception {
-        // Lấy thuộc tính từ dataset
-        Attribute attribute = dataset.attribute(attributeName);
-        if (attribute == null) {
-            throw new IllegalArgumentException("Attribute '" + attributeName + "' does not exist in the dataset.");
-        }
-
-        // Kiểm tra xem thuộc tính là kiểu nominal hay numeric
-        if (attribute.isNominal()) {
-            instance.setValue(attribute, (String) value);
-        } else if (attribute.isNumeric()) {
-            if (value instanceof Integer) {
-                instance.setValue(attribute, ((Integer) value).doubleValue()); // Chuyển đổi int sang double
-            } else if (value instanceof Double) {
-                instance.setValue(attribute, (Double) value); // Đối với giá trị double
-            } else {
-                throw new IllegalArgumentException("Unsupported numeric value type for '" + attributeName + "'.");
-            }
-        } else {
-            throw new IllegalArgumentException("Unsupported attribute type for '" + attributeName + "'.");
-        }
-    }
-
+    // Đối tượng để lấy kết quả dự đoán
     public class PredictionResult {
         private String predictedClass;
         private double yesPercentage;
